@@ -1,0 +1,17 @@
+form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-height: 200px;
+    margin-top: 6px;
+    margin-bottom: 6px;
+}
+
+button {
+    align-items: center;
+    height: 25px;
+    background-color: darkred;
+    color: whitesmoke;
+    font-family: 'Griffy', cursive;
+    margin: 15px;
+}

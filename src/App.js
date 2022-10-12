@@ -3,6 +3,9 @@ import './App.css';
 import backgroundVideo from './backgroundVideo.mp4';
 import React, {Component} from 'react';
 import Ball from './Ball';
+import Form from'./Form';
+import wetTriangle from './wetTriangle.png';
+
 
 class App extends Component {
   constructor() {
@@ -28,9 +31,34 @@ class App extends Component {
         'My sources say no.',
         'Outlook not so good.',
         'Very doubtful.'
-      ]
+      ],
+      randomResponse: " ",
+      triangleImg: null,
+      animationClass: null,
+      formValue: ' ',
     }
   }
+  generateRandomResponse() {
+    return this.state.responses[Math.floor(Math.random() * this.state.responses.length)];
+  }
+
+  shakeBall = () => {
+    this.setState({ animationClass: 'wiggle' })
+    this.setState({ randomResponse: this.generateRandomResponse() });
+}
+
+  showTriangle = () => {
+    this.setState({ triangleImg: wetTriangle } );
+  }
+  
+  clearInput = () => {
+    this.setState({ formValue: " " })
+  }
+
+  updateInput = (input) => {
+    this.setState({ formValue: input })
+  }
+
   render() {
     return (
       <main className="App">
@@ -39,7 +67,18 @@ class App extends Component {
         </video>
         <h1>Magic 8 Ball</h1>
         <h2>Type your question below and give it a shake.</h2>
-        <Ball {this.state} />
+        <Form 
+          shakeBall={this.shakeBall} 
+          showTriangle={this.showTriangle}
+          formValue={this.state.formValue}
+          updateInput={this.updateInput}
+          clearInput={this.clearInput}
+        />
+        <Ball 
+          response={this.state.randomResponse} 
+          triangleImg={this.state.triangleImg} 
+          animationClass={this.state.animationClass} 
+        />
       </main>
     );
   }

@@ -1,11 +1,13 @@
 import React from "react";
-import magicBall from './magicBall.png';
 import './Ball.css';
 
+
 function Ball(props) {
-    console.log(props.responses);
     return (
-        <div className='ballSection'>Hi!</div>
+        <div id='ballSection' className={`${props.animationClass}`}>
+            <p className="response">{props.response}</p>
+            {props.triangleImg ? <img className='triangleImg' src={`${props.triangleImg}`} /> : ""}
+        </div>
     )
 }
 
